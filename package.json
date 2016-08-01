@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Speed up your static site",
   "bin": "index.js",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "build": "npm run copy && node index.js",
@@ -12,12 +13,25 @@
     "fastatic:react": "node ./ examples/react-gh-pages/ --dest examples/react/",
     "ngrok": "ngrok http 3278",
     "start": "http-server 'examples/' -c-1 -o -p 3278",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "changelog": "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --output-unreleased",
+    "commit": "git-cz",
+    "preversion": "npm run build && npm test",
+    "version": "npm run changelog && git add .",
+    "postversion": "git commit -m \"chore(version): v$npm_package_version\n$(conventional-changelog --preset angular)\" && git tag -a v$npm_package_version -m \"$(conventional-changelog --preset angular)\""
   },
   "keywords": [],
   "author": "De Voorhoede (https://voorhoede.nl/)",
   "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "devDependencies": {
+    "commitizen": "2.8.2",
+    "conventional-changelog-cli": "1.2.0",
+    "cz-conventional-changelog": "1.1.6",
     "http-server": "0.9.0",
     "ngrok": "2.2.2"
   },
