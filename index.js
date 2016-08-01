@@ -10,6 +10,10 @@ const defaults = {
         pattern: '**/*.css',
         parser: require('./lib/parse-css')
     },
+    images: {
+        pattern: '**/*.{gif,jpg,jpeg,png,svg}',
+        parser: require('./lib/parse-images')
+    },
     html: {
         pattern: '**/*.html',
         parser: require('./lib/parse-html')
@@ -24,6 +28,7 @@ const defaults = {
 function parseAll(config) {
     return Promise.all([
         config.css.parser({ src: config.src, dest: config.temp, pattern: config.css.pattern }),
+        config.images.parser({ src: config.src, dest: config.temp, pattern: config.images.pattern }),
         config.html.parser({ src: config.src, dest: config.temp, pattern: config.html.pattern }),
         config.js.parser({ src: config.src, dest: config.temp, pattern: config.js.pattern })
     ]);
@@ -49,10 +54,10 @@ function fastatic(options) {
     .then(() => console.log('Done. Optimised static files in', config.dest));
 }
 
-//fastatic({
-//    src: 'examples/react-gh-pages/',
-//    dest: 'examples/react/'
-//});
+fastatic({
+   src: 'examples/react-gh-pages/',
+   dest: 'examples/react/'
+});
 
 if (require.main === module) {
     // if used from cli, parse arguments and call fastatic with it
