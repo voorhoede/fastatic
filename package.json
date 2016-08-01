@@ -1,0 +1,35 @@
+{
+  "name": "fastatic",
+  "version": "0.0.1",
+  "description": "Speed up your static site",
+  "bin": "index.js",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run copy && node index.js",
+    "copy": "ncp examples/react-gh-pages/ examples/react/",
+    "fastatic:help": "node ./ --help",
+    "fastatic:version": "node ./ --version",
+    "fastatic:react": "node ./ examples/react-gh-pages/ --dest examples/react/",
+    "ngrok": "ngrok http 3278",
+    "start": "http-server 'examples/' -c-1 -o -p 3278",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "De Voorhoede (https://voorhoede.nl/)",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "0.9.0",
+    "ngrok": "2.2.2"
+  },
+  "dependencies": {
+    "bluebird": "3.4.1",
+    "commander": "2.9.0",
+    "gulp": "3.9.1",
+    "gulp-clean-css": "2.0.12",
+    "gulp-htmlmin": "2.0.0",
+    "gulp-uglify": "1.5.4",
+    "ncp": "2.0.0",
+    "pump": "1.0.1",
+    "rimraf": "2.5.4"
+  }
+}
