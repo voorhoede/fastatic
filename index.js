@@ -16,6 +16,10 @@ const defaults = {
 			pattern: '**/*.html',
 			parser: require('./lib/parse-html')
 		},
+		images: {
+			pattern: '**/*.{gif,jpg,jpeg,png,svg}',
+			parser: require('./lib/parse-images')
+		},
 		js: {
 			pattern: '**/*.js',
 			parser: require('./lib/parse-js')

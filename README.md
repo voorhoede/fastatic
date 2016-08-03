@@ -1,15 +1,16 @@
 # Fastatic
+> Speed up your static site with one command
 
 ## Usage
 
 ### CLI
 
 ```bash
-fastatic my-static-site/
+$ fastatic my-static-site/
 ```
 
 ```bash
-fastatic my-static-site-source/ --dest my-static-site/
+$ fastatic my-static-site-source/ --dest my-static-site/
 ```
 
 ### JS
@@ -19,12 +20,10 @@ const fastatic = require('fastatic');
 fastatic();
 ```
 
-## Configuration
-
-### Configure patterns
+#### Configure patterns
 
 ```javascript
-// Disable a parser:
+// configure patterns:
 fastatic({
     js: {
       pattern: ['**/*.js', '!**/*.min.js'],
@@ -32,7 +31,7 @@ fastatic({
 });
 ```
 
-### Disable parsers
+#### Disable a parser
 
 ```javascript
 // Disable a parser:
@@ -41,32 +40,19 @@ fastatic({
 });
 ```
 
-### Use your own parsers
+## Default parsers
 
-```javascript
-// Use your own parser:
-fastatic({
-    js: {
-      pattern: '**/*.js',
-      parser: function(config) {
-      	console.log(config.src, config.dest, config.pattern);
-      	return new Promise(/* do your own magic here */);
-      }
-    }
-});
-```
+parser | pattern | function
+--- | --- | ---
+`css` | `**/*.css` | Minify stylesheets
+`js` | `**/*.js` | Minify javascript files
+`html` | `**/*.html` | Minify HTML by removing whitespace and minifying inline css/javascript
+`images` | `**/*.{gif,jpg,jpeg,png,svg}` | Optimize images and SVG files
 
-## Test
 
-Start local server:
+## Available tasks
 
-`npm start` -> `localhost:3278` // 3278 is "fast" in T9
-
-Proxy using [ngrok](ngrok https://www.npmjs.com/package/ngrok):
-
-`npm run ngrok`
-
-## To do
-
-* Integrate [psi](https://una.im/gulp-local-psi/)?
-* Show optimisation stats? -> file type (pattern?) | original size | optimised size | savings
+task | function
+--- | ---
+`npm run start` | Start local server with your optimized version
+`npm run ngrok` | Create a proxy to your local server with [ngrok](ngrok https://www.npmjs.com/package/ngrok).

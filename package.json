@@ -44,7 +44,11 @@
     "gulp": "3.9.1",
     "gulp-clean-css": "2.0.12",
     "gulp-htmlmin": "2.0.0",
+    "gulp-imagemin": "3.0.2",
     "gulp-uglify": "1.5.4",
+    "imagemin-mozjpeg": "6.0.0",
+    "imagemin-pngquant": "5.0.0",
+    "imagemin-svgo": "5.1.0",
     "ncp": "2.0.0",
     "pump": "1.0.1",
     "rimraf": "2.5.4"
