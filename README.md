@@ -56,3 +56,9 @@ task | function
 --- | ---
 `npm run start` | Start local server with your optimized version
 `npm run ngrok` | Create a proxy to your local server with [ngrok](ngrok https://www.npmjs.com/package/ngrok).
+
+
+## Documented limitations
+
+* It doesn't concatenate files (css / js ) because there is no reliable way to determine the combinations in which these files are served, nor does it know about the protocol over which it's served (HTTP/1 or HTTP/2).
+* It doesn't resize images (png / jpg / gif) because there is no reliable way to determine which sizes the images are displayed in.
