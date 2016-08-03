@@ -24,6 +24,38 @@ const defaults = {
 };
 
 
+function fastatic(options) {
+	const config = defineConfig(defaults, options);
+
+	// 1. copy to temp dir
+	//copy(config.src, config.temp)
+	// 2. optimise files (in parallel?)
+	//.then(parseAll(config))
+	parseAll(config)
+	// 3. revision files
+	// ...
+	.then(() => stats(config))
+	.then(output => console.log(output))
+	// 4. copy to final dest
+	// .then(() => copy(config.temp, config.dest))
+	// 5. remove temp dir
+	.catch(err => console.log('error', err)) // if anything goes wrong, we skip all steps, catch errors and remove temp
+	//.then(() => remove(config.temp))
+	.then(() => console.log('Done. Optimised static files in', config.dest));
+}
+
+
+function defineConfig(defaults, options) {
+	const config = Object.assign({}, defaults, options);
+	Object.keys(config.parsers).forEach(name => {
+		if (!config.parsers[name]) {
+			delete config.parsers[name];
+		}
+	});
+	return config;
+}
+
+
 function parseAll(config) {
 	return Promise.all(
 		Object.keys(config.parsers).map(function(name) {
@@ -36,34 +68,6 @@ function parseAll(config) {
 	);
 }
 
-
-function fastatic(options) {
-	const config = Object.assign({}, defaults, options);
-
-	Object.keys(config.parsers).map(function(name) {
-		if (!config.parsers[name]) {
-			delete config.parsers[name];
-		}
-	});
-
-
-	// 1. copy to temp dir
-	//copy(config.src, config.temp)
-	// 2. optimise files (in parallel?)
-	//.then(parseAll(config))
-	parseAll(config)
-	// 3. revision files
-	// ...
-	// 4. copy to final dest
-	// .then(() => copy(config.temp, config.dest))
-	// 5. remove temp dir
-	.catch(err => console.log('error', err)) // if anything goes wrong, we skip all steps, catch errors and remove temp
-	//.then(() => remove(config.temp))
-	// 6. create stats
-	.then(() => stats(config))
-	.then(() => console.log('Done. Optimised static files in', config.dest));
-
-}
 
 fastatic({
 	src: 'examples/react-gh-pages/',
