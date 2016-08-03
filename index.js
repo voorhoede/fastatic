@@ -40,6 +40,12 @@ function parseAll(config) {
 function fastatic(options) {
 	const config = Object.assign({}, defaults, options);
 
+	Object.keys(config.parsers).map(function(name) {
+		if (!config.parsers[name]) {
+			delete config.parsers[name];
+		}
+	});
+
 
 	// 1. copy to temp dir
 	//copy(config.src, config.temp)
@@ -60,8 +66,8 @@ function fastatic(options) {
 }
 
 fastatic({
-   src: 'examples/react-gh-pages/',
-   dest: 'examples/react/'
+	src: 'examples/react-gh-pages/',
+	dest: 'examples/react/'
 });
 
 
