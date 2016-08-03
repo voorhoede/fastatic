@@ -72,32 +72,4 @@ function parseAll(config) {
 }
 
 
-fastatic({
-	src: 'examples/react-gh-pages/',
-	dest: 'examples/react/'
-});
-
-
-
-if (require.main === module) {
-	// if used from cli, parse arguments and call fastatic with it
-	// @todo: move to bin.js / cli.js?
-	const pkg = require('./package');
-	const program = require('commander')
-		.version(pkg.version)
-		.description(`${pkg.name} (v${pkg.version}): ${pkg.description}`)
-		.usage('<src> [options]')
-		.option('-d, --dest [value]', 'Output destination')
-		.parse(process.argv);
-
-	if(!program.args[0]) {
-		return;
-	}
-
-	fastatic({
-		src: program.args[0],
-		dest: program.dest
-	});
-}
-
 module.exports = fastatic;

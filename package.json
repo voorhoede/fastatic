@@ -1,15 +1,16 @@
 {
   "name": "fastatic",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Speed up your static site",
-  "bin": "index.js",
+  "bin": {
+    "fastatic": "./bin/fastatic"
+  },
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "node index.js",
-    "fastatic:help": "node ./ --help",
-    "fastatic:version": "node ./ --version",
-    "fastatic:react": "node ./ examples/react-gh-pages/ --dest examples/react/",
+    "fastatic:help": "./bin/fastatic --help",
+    "fastatic:version": "./bin/fastatic --version",
+    "fastatic:react": "./bin/fastatic examples/react-gh-pages/ --dest examples/react/",
     "ngrok": "ngrok http 3278",
     "start": "http-server 'examples/' -c-1 -o -p 3278",
     "test": "echo \"Error: no test specified\" && exit 1",
