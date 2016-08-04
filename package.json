@@ -51,6 +51,7 @@
     "gulp-imagemin": "3.0.2",
     "gulp-jsonminify": "1.0.0",
     "gulp-uglify": "1.5.4",
+    "gulp-uncss": "1.0.6",
     "imagemin-mozjpeg": "6.0.0",
     "imagemin-pngquant": "5.0.0",
     "imagemin-svgo": "5.1.0",
