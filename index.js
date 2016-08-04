@@ -23,6 +23,10 @@ const defaults = {
 		js: {
 			pattern: '**/*.js',
 			parser: require('./lib/parse-js')
+		},
+		json: {
+			pattern: '**/*.json',
+			parser: require('./lib/parse-json')
 		}
 	}
 };
@@ -74,8 +78,8 @@ function parseAll(config) {
 
 
 fastatic({
-	src: 'examples/react-gh-pages/',
-	dest: 'examples/react/'
+	src: 'examples/microsoft.github.io-master/',
+	dest: 'examples/microsoft/'
 });
 
 
