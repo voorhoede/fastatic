@@ -11,12 +11,12 @@ const program = require('commander')
 	.parse(process.argv);
 
 const src = program.args[0];
-
+const dest = program.dest || src ;
 
 if(src) {
 	fastatic({
-		src: program.args[0],
-		dest: program.dest
+		src: src,
+		dest: dest
 	});
 } else {
 	console.log('Incorrect use. Try: `fastatic --help`');
