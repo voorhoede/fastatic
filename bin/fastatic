@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const fastatic = require('../index');
+const pkg = require('../package');
+
+const program = require('commander')
+	.version(pkg.version)
+	.description(`${pkg.name} (v${pkg.version}): ${pkg.description}`)
+	.usage('<src> [options]')
+	.option('-d, --dest [value]', 'Output destination')
+	.parse(process.argv);
+
+const src = program.args[0];
+
+
+if(src) {
+	fastatic({
+		src: program.args[0],
+		dest: program.dest
+	});
+} else {
+	console.log('Incorrect use. Try: `fastatic --help`');
+}
