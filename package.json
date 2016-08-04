@@ -14,7 +14,7 @@
     "fastatic:react": "./bin/fastatic examples/react-gh-pages/ --dest examples/react/",
     "ngrok": "ngrok http 3278",
     "start": "http-server 'examples/' -c-1 -o -p 3278",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "eslint index.js /lib /bin",
     "changelog": "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --output-unreleased",
     "commit": "git-cz",
     "preversion": "npm run build && npm test",
@@ -33,6 +33,7 @@
     "commitizen": "2.8.4",
     "conventional-changelog-cli": "1.2.0",
     "cz-conventional-changelog": "1.1.6",
+    "eslint": "3.2.2",
     "http-server": "0.9.0",
     "ngrok": "2.2.2"
   },
