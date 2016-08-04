@@ -46,7 +46,7 @@ parser | pattern | function
 --- | --- | ---
 `css` | `**/*.css` | Minify stylesheets
 `js` | `**/*.js` | Minify javascript files
-`json` | `**/*.json` | Minify json files by removing all whitespace
+`json` | `**/*.json` | Minify json files by removing all whitespace 
 `html` | `**/*.html` | Minify HTML by removing whitespace and minifying inline css/javascript
 `images` | `**/*.{gif,jpg,jpeg,png,svg}` | Optimize images and SVG files
 `xml` | `**/*.xml` | Minify XML files by removing all whitespace and comments
