@@ -27,6 +27,10 @@ const defaults = {
 		json: {
 			pattern: '**/*.json',
 			parser: require('./lib/parse-json')
+		},
+		xml: {
+			pattern: '**/*.xml',
+			parser: require('./lib/parse-xml')
 		}
 	}
 };
