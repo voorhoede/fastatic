@@ -1,5 +1,5 @@
+const copy = require('./lib/copy');
 const promisify = require('bluebird').promisify;
-const copy = promisify(require('ncp').ncp);
 const remove = promisify(require('rimraf'));
 const stats = require('./lib/parser-stats');
 
@@ -36,19 +36,18 @@ function fastatic(options) {
 	const config = defineConfig(defaults, options);
 
 	// 1. copy to temp dir
-	//copy(config.src, config.temp)
-	// 2. optimise files (in parallel?)
-	//.then(parseAll(config))
-	parseAll(config)
-	// 3. revision files
-	// ...
+	copy(config.src, config.temp)
+	// 2. optimise files
+	.then(() => parseAll(config))
+	//// 3. revision files
+	//// ...
+	//// 4. display stats
 	.then(() => stats(config))
 	.then(output => console.log(output))
-	// 4. copy to final dest
-	// .then(() => copy(config.temp, config.dest))
-	// 5. remove temp dir
+	//// 5. copy to final dest
+	.then(() => copy(config.temp, config.dest))
 	.catch(err => console.log('error', err)) // if anything goes wrong, we skip all steps, catch errors and remove temp
-	//.then(() => remove(config.temp))
+	.then(() => remove(config.temp))
 	.then(() => console.log('Done. Optimised static files in', config.dest));
 }
 
@@ -76,33 +75,5 @@ function parseAll(config) {
 	);
 }
 
-
-fastatic({
-	src: 'examples/microsoft.github.io-master/',
-	dest: 'examples/microsoft/'
-});
-
-
-
-if (require.main === module) {
-	// if used from cli, parse arguments and call fastatic with it
-	// @todo: move to bin.js / cli.js?
-	const pkg = require('./package');
-	const program = require('commander')
-		.version(pkg.version)
-		.description(`${pkg.name} (v${pkg.version}): ${pkg.description}`)
-		.usage('<src> [options]')
-		.option('-d, --dest [value]', 'Output destination')
-		.parse(process.argv);
-
-	if(!program.args[0]) {
-		return;
-	}
-
-	fastatic({
-		src: program.args[0],
-		dest: program.dest
-	});
-}
 
 module.exports = fastatic;

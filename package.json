@@ -1,16 +1,17 @@
 {
   "name": "fastatic",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Speed up your static site",
-  "bin": "index.js",
+  "bin": {
+    "fastatic": "./bin/fastatic"
+  },
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "npm run copy && node index.js",
-    "copy": "ncp examples/react-gh-pages/ examples/react/",
-    "fastatic:help": "node ./ --help",
-    "fastatic:version": "node ./ --version",
-    "fastatic:react": "node ./ examples/react-gh-pages/ --dest examples/react/",
+    "fastatic:help": "./bin/fastatic --help",
+    "fastatic:version": "./bin/fastatic --version",
+    "fastatic:microsoft": "./bin/fastatic examples/microsoft.github.io-master/ --dest examples/microsoft/",
+    "fastatic:react": "./bin/fastatic examples/react-gh-pages/ --dest examples/react/",
     "ngrok": "ngrok http 3278",
     "start": "http-server 'examples/' -c-1 -o -p 3278",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,7 +30,7 @@
     }
   },
   "devDependencies": {
-    "commitizen": "2.8.2",
+    "commitizen": "2.8.4",
     "conventional-changelog-cli": "1.2.0",
     "cz-conventional-changelog": "1.1.6",
     "http-server": "0.9.0",
@@ -41,6 +42,7 @@
     "cli-table": "0.3.1",
     "commander": "2.9.0",
     "filesize": "3.3.0",
+    "fs-extra": "0.30.0",
     "gulp": "3.9.1",
     "gulp-clean-css": "2.0.12",
     "gulp-htmlmin": "2.0.0",
@@ -50,7 +52,6 @@
     "imagemin-mozjpeg": "6.0.0",
     "imagemin-pngquant": "5.0.0",
     "imagemin-svgo": "5.1.0",
-    "ncp": "2.0.0",
     "pump": "1.0.1",
     "rimraf": "2.5.4"
   }
