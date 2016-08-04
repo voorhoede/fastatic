@@ -23,6 +23,10 @@ const defaults = {
 		js: {
 			pattern: '**/*.js',
 			parser: require('./lib/parse-js')
+		},
+		json: {
+			pattern: '**/*.json',
+			parser: require('./lib/parse-json')
 		}
 	}
 };

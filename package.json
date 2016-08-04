@@ -10,6 +10,7 @@
   "scripts": {
     "fastatic:help": "./bin/fastatic --help",
     "fastatic:version": "./bin/fastatic --version",
+    "fastatic:microsoft": "./bin/fastatic examples/microsoft.github.io-master/ --dest examples/microsoft/",
     "fastatic:react": "./bin/fastatic examples/react-gh-pages/ --dest examples/react/",
     "ngrok": "ngrok http 3278",
     "start": "http-server 'examples/' -c-1 -o -p 3278",
@@ -46,7 +47,8 @@
     "gulp-clean-css": "2.0.12",
     "gulp-htmlmin": "2.0.0",
     "gulp-imagemin": "3.0.2",
-    "gulp-uglify": "2.0.0",
+    "gulp-jsonminify": "1.0.0",
+    "gulp-uglify": "1.5.4",
     "imagemin-mozjpeg": "6.0.0",
     "imagemin-pngquant": "5.0.0",
     "imagemin-svgo": "5.1.0",
