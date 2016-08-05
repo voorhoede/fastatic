@@ -2,6 +2,7 @@ const copy = require('./lib/copy');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
 const stats = require('./lib/parser-stats');
+const Spinner = require('cli-spinner').Spinner;
 
 const defaults = {
 	src: './',
@@ -39,6 +40,10 @@ const defaults = {
 function fastatic(options) {
 	const config = defineConfig(defaults, options);
 
+	const loader = new Spinner(`%s Crunching ${config.src}`);
+	loader.setSpinnerString(18);
+	loader.start();
+
 	// 1. copy to temp dir
 	copy(config.src, config.temp)
 	// 2. optimise files
@@ -48,6 +53,7 @@ function fastatic(options) {
 	//// 4. display stats
 	.then(() => stats(config))
 	.then(output => console.log(output))
+	.then(() => loader.stop())
 	//// 5. copy to final dest
 	.then(() => copy(config.temp, config.dest))
 	.catch(err => console.log('error', err)) // if anything goes wrong, we skip all steps, catch errors and remove temp
