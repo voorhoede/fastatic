@@ -5,7 +5,7 @@ const stats = require('./lib/parser-stats');
 
 const defaults = {
 	src: './',
-	dest: './',
+	dest: undefined,
 	temp: './.fastatic-temp/',
 	parsers: {
 		css: {
@@ -58,6 +58,8 @@ function fastatic(options) {
 
 function defineConfig(defaults, options) {
 	const config = Object.assign({}, defaults, options);
+	config.dest = config.dest || config.src;
+
 	Object.keys(config.parsers).forEach(name => {
 		if (!config.parsers[name]) {
 			delete config.parsers[name];
