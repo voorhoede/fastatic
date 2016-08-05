@@ -5,7 +5,6 @@
   "bin": {
     "fastatic": "./bin/fastatic"
   },
-  "private": true,
   "main": "index.js",
   "scripts": {
     "fastatic:help": "./bin/fastatic --help",
