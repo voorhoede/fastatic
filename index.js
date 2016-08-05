@@ -4,9 +4,6 @@ const remove = promisify(require('rimraf'));
 const stats = require('./lib/parser-stats');
 const Spinner = require('cli-spinner').Spinner;
 
-const loader = new Spinner('%s Crunching...');
-loader.setSpinnerString(18);
-
 const defaults = {
 	src: './',
 	dest: './',
@@ -43,10 +40,13 @@ const defaults = {
 function fastatic(options) {
 	const config = defineConfig(defaults, options);
 
+	const loader = new Spinner(`%s Crunching ${config.src}`);
+	loader.setSpinnerString(18);
+	loader.start();
+
 	// 1. copy to temp dir
 	copy(config.src, config.temp)
 	// 2. optimise files
-	.then(() => loader.start())
 	.then(() => parseAll(config))
 	//// 3. revision files
 	//// ...
