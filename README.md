@@ -4,7 +4,7 @@
 
 Static site generators are [the next big thing](https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/). Fastatic takes the ouput of *any static site generator* ([Jekyll](http://jekyllrb.com/), [Hugo](http://gohugo.io/) and [many others](https://www.staticgen.com/)) and optimises it. The result: faster static sites.
 
-Fastatic minifies your HTML, CSS, JS, JSON, XML and images. [See issues for more planned improvements](https://github.com/voorhoede-labs/fastatic/issues).
+Fastatic minifies your HTML, CSS, JS, JSON, XML and images. [See issues for more planned improvements](https://github.com/voorhoede/fastatic/issues).
 
 
 ## Example: React
