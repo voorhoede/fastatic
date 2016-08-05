@@ -1,3 +1,13 @@
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/voorhoede/fastatic/compare/v0.1.1...v0.1.2) (2016-08-05)
+
+
+### Bug Fixes
+
+* **readme:** fix table display with for better readability on npmjs ([9152c9b](https://github.com/voorhoede/fastatic/commit/9152c9b))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/voorhoede/fastatic/compare/v0.1.0...v0.1.1) (2016-08-05)
 
