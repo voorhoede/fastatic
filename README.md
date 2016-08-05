@@ -52,18 +52,15 @@ parser | pattern | function
 `xml` | `**/*.xml` | Minify XML files by removing all whitespace and comments
 
 
-## Available tasks
-
-task | function
---- | ---
-`npm run start` | Start local server with your optimized version
-`npm run ngrok` | Create a proxy to your local server with [ngrok](ngrok https://www.npmjs.com/package/ngrok).
-
-
 ## Known limitations
 
 * *Fastastic* doesn't concatenate files (css / js ) because there is no reliable way to determine the combinations in which these files are served, nor does it know about the protocol over which it's served (HTTP/1 or HTTP/2).
 * *Fastastic* doesn't resize images (png / jpg / gif) because there is no reliable way to determine which sizes the images are displayed in.
+
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for [guidelines](CONTRIBUTING.md#guidelines) and [development scripts](CONTRIBUTING.md#scripts).
 
 
 ## License
