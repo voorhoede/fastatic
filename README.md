@@ -2,6 +2,32 @@
 
 **Speed up your static site with one command: `fastatic`**
 
+Static site generators are [the next big thing](https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/). Fastatic takes the ouput of *any static site generator* ([Jekyll](http://jekyllrb.com/), [Hugo](http://gohugo.io/) and [many others](https://www.staticgen.com/)) and optimises it. The result: faster static sites.
+
+Fastatic minifies your HTML, CSS, JS, JSON, XML and images. [See issues for more planned improvements](https://github.com/voorhoede-labs/fastatic/issues).
+
+
+## Example: React
+
+Running Fastatic on the [React](https://facebook.github.io/react/)'s [static site files](https://github.com/facebook/react/tree/gh-pages) results in a faster site:
+
+```bash
+┌─────────────────────────────┬───────────────┬────────────────┬─────────────────┐
+│ Filetype                    │ Original size │ Optimized size │          Saving │
+├─────────────────────────────┼───────────────┼────────────────┼─────────────────┤
+│ **/*.css                    │      29.51 KB │       22.57 KB │   6.94 KB (24%) │
+├─────────────────────────────┼───────────────┼────────────────┼─────────────────┤
+│ **/*.html                   │       8.77 MB │        7.47 MB │   1.30 MB (15%) │
+├─────────────────────────────┼───────────────┼────────────────┼─────────────────┤
+│ **/*.{gif,jpg,jpeg,png,svg} │      14.83 MB │       13.44 MB │   1.39 MB  (9%) │
+├─────────────────────────────┼───────────────┼────────────────┼─────────────────┤
+│ **/*.js                     │       2.06 MB │        1.36 MB │ 714.22 KB (34%) │
+├─────────────────────────────┼───────────────┼────────────────┼─────────────────┤
+│ **/*.xml                    │     197.68 KB │      197.30 KB │     381 B  (0%) │
+├─────────────────────────────┼───────────────┼────────────────┼─────────────────┤
+│ Total                       │      25.94 MB │       22.54 MB │   3.39 MB (13%) │
+└─────────────────────────────┴───────────────┴────────────────┴─────────────────┘
+```
 
 ## Usage
 
@@ -63,38 +89,6 @@ Optimise all static files from a specific directory and **output to a different 
 ```javascript
 fastatic({ src: 'my-static-site-source/', dest: 'my-static-site-dest/' });
 ```
-
-
-#### Configure parser pattern
-
-```javascript
-// configure patterns:
-fastatic({
-    js: {
-      pattern: ['**/*.js', '!**/*.min.js'],
-    }
-});
-```
-
-#### Disable a parser
-
-```javascript
-// Disable a parser:
-fastatic({
-    js: false
-});
-```
-
-## Default parsers
-
-parser | pattern | function
---- | --- | ---
-`css` | `**/*.css` | Minify stylesheets
-`js` | `**/*.js` | Minify javascript files
-`json` | `**/*.json` | Minify json files by removing all whitespace 
-`html` | `**/*.html` | Minify HTML by removing whitespace and minifying inline css/javascript
-`images` | `**/*.{gif,jpg,jpeg,png,svg}` | Optimize images and SVG files
-`xml` | `**/*.xml` | Minify XML files by removing all whitespace and comments
 
 
 ## Known limitations
