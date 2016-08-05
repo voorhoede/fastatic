@@ -61,3 +61,8 @@ parser | pattern | function
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for [guidelines](CONTRIBUTING.md#guidelines) and [development scripts](CONTRIBUTING.md#scripts).
+
+
+## License
+
+[MIT licensed](LICENSE) © [De Voorhoede](https://www.voorhoede.nl/)
