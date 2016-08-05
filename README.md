@@ -1,26 +1,71 @@
 # Fastatic
-> Speed up your static site with one command
+
+**Speed up your static site with one command: `fastatic`**
+
 
 ## Usage
 
-### CLI
+Fastatic works out-of-the-box with zero configuration.
+
+You can use Fastatic both as a [CLI tool](#cli) and [programmatically in JS](#js).
+
+
+### Install
+
+Fastatic is written in [Node.js](http://nodejs.org/) and can be installed via [npm](https://npmjs.org/):
 
 ```bash
-$ fastatic my-static-site/
+$ npm install fastatic
 ```
 
+### CLI
+
+Optimise all static files in **current directory**:
+
 ```bash
-$ fastatic my-static-site-source/ --dest my-static-site/
+$ fastatic
+```
+
+Optimise all static files in a **specific directory**:
+
+```bash
+$ fastatic my-static-site-source/
+```
+
+Optimise all static files from a specific directory and **output to a different directory** using `--dest`:
+
+```bash
+$ fastatic my-static-site-source/ --dest my-static-site-dest/
 ```
 
 ### JS
 
+To use Fastatic programmatically import the `fastatic` module:
+
 ```javascript
 const fastatic = require('fastatic');
+```
+
+Optimise all static files in **current directory**:
+
+```javascript
 fastatic();
 ```
 
-#### Configure patterns
+Optimise all static files in a **specific directory**:
+
+```javascript
+fastatic({ src: 'my-static-site-source/' });
+```
+
+Optimise all static files from a specific directory and **output to a different directory**:
+
+```javascript
+fastatic({ src: 'my-static-site-source/', dest: 'my-static-site-dest/' });
+```
+
+
+#### Configure parser pattern
 
 ```javascript
 // configure patterns:
@@ -54,8 +99,8 @@ parser | pattern | function
 
 ## Known limitations
 
-* *Fastastic* doesn't concatenate files (css / js ) because there is no reliable way to determine the combinations in which these files are served, nor does it know about the protocol over which it's served (HTTP/1 or HTTP/2).
-* *Fastastic* doesn't resize images (png / jpg / gif) because there is no reliable way to determine which sizes the images are displayed in.
+* Fastastic doesn't concatenate files (css / js) because there is no reliable way to determine the combinations in which these files are served, nor does it know about the protocol over which it's served (HTTP/1 or HTTP/2).
+* Fastastic doesn't resize images (png / jpg / gif) because there is no reliable way to determine which sizes the images are displayed in.
 
 
 ## Contributing

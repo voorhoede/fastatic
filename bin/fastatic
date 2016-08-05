@@ -15,7 +15,7 @@ const src = program.args[0];
 
 if(src) {
 	fastatic({
-		src: program.args[0],
+		src: src,
 		dest: program.dest
 	});
 } else {
