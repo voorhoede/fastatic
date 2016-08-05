@@ -64,3 +64,8 @@ task | function
 
 * *Fastastic* doesn't concatenate files (css / js ) because there is no reliable way to determine the combinations in which these files are served, nor does it know about the protocol over which it's served (HTTP/1 or HTTP/2).
 * *Fastastic* doesn't resize images (png / jpg / gif) because there is no reliable way to determine which sizes the images are displayed in.
+
+
+## License
+
+[MIT licensed](LICENSE) © [De Voorhoede](https://www.voorhoede.nl/)
