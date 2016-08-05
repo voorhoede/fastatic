@@ -1,6 +1,6 @@
 {
   "name": "fastatic",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Speed up your static site",
   "bin": {
     "fastatic": "./bin/fastatic"
