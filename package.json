@@ -41,7 +41,7 @@
     }
   },
   "devDependencies": {
-    "commitizen": "2.8.4",
+    "commitizen": "2.8.5",
     "conventional-changelog-cli": "1.2.0",
     "cz-conventional-changelog": "1.1.6",
     "eslint": "3.2.2",
