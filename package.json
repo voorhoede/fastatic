@@ -12,6 +12,8 @@
     "examples:react": "./bin/fastatic examples/react-gh-pages/ --dest dist/examples/react/",
     "examples:bootstrap": "./bin/fastatic examples/bootstrap-gh-pages/ --dest dist/examples/bootstrap/",
     "postexamples:react": "node ./scripts/post-react.js",
+    "build": "npm run examples && npm run build:readme",
+    "build:readme": "marked README.md -o 'dist/index.html'",
     "serve": "http-server 'dist/' -i -p 3278",
     "fastatic:help": "./bin/fastatic --help",
     "fastatic:version": "./bin/fastatic --version",
@@ -47,6 +49,7 @@
     "conventional-changelog-cli": "1.2.0",
     "cz-conventional-changelog": "1.1.7",
     "eslint": "3.2.2",
+    "gh-markdown-cli": "0.2.0",
     "http-server": "0.9.0",
     "ngrok": "2.2.2"
   },
