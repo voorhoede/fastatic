@@ -14,7 +14,9 @@ notifications:
 before_script:
 - npm prune
 script:
-- npm test && npm run fastatic:microsoft
+- npm run build
+after_script:
+- bash ./scripts/deploy.sh
 env:
   global:
   - GH_USER: voorhoede
