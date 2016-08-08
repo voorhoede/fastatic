@@ -7,13 +7,15 @@
   },
   "main": "index.js",
   "scripts": {
+    "examples": "npm-run-all --serial examples:*",
+    "examples:microsoft": "./bin/fastatic examples/microsoft.github.io-master/ --dest dist/examples/microsoft/",
+    "examples:react": "./bin/fastatic examples/react-gh-pages/ --dest dist/examples/react/",
+    "examples:bootstrap": "./bin/fastatic examples/bootstrap-gh-pages/ --dest dist/examples/bootstrap/",
+    "serve": "http-server 'dist/' -i -p 3278",
     "fastatic:help": "./bin/fastatic --help",
     "fastatic:version": "./bin/fastatic --version",
-    "fastatic:microsoft": "./bin/fastatic examples/microsoft.github.io-master/ --dest examples/microsoft/",
-    "fastatic:react": "./bin/fastatic examples/react-gh-pages/ --dest examples/react/",
-    "fastatic:bootstrap": "./bin/fastatic examples/bootstrap-gh-pages/ --dest examples/bootstrap/",
     "ngrok": "ngrok http 3278",
-    "start": "http-server 'examples/' -c-1 -o -p 3278",
+    "start": "http-server 'examples/' -c-1 -o ",
     "test": "eslint index.js /lib /bin",
     "changelog": "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --output-unreleased",
     "commit": "git-cz",
@@ -51,8 +53,8 @@
   "dependencies": {
     "bluebird": "3.4.1",
     "calc-percent": "1.0.1",
-    "cli-table": "0.3.1",
     "cli-spinner": "0.2.5",
+    "cli-table": "0.3.1",
     "colors": "1.1.2",
     "commander": "2.9.0",
     "filesize": "3.3.0",
@@ -66,6 +68,7 @@
     "imagemin-mozjpeg": "6.0.0",
     "imagemin-pngquant": "5.0.0",
     "imagemin-svgo": "5.1.0",
+    "npm-run-all": "2.3.0",
     "pump": "1.0.1",
     "rimraf": "2.5.4"
   }
