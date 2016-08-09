@@ -9,29 +9,29 @@ const defaults = {
 	dest: undefined,
 	temp: './.fastatic-temp/',
 	parsers: {
-		css: {
+		cssmin: {
 			pattern: '**/*.css',
-			parser: require('./lib/parse-css')
+			parser: require('./lib/parse-cssmin')
 		},
-		html: {
+		htmlmin: {
 			pattern: '**/*.html',
-			parser: require('./lib/parse-html')
+			parser: require('./lib/parse-htmlmin')
 		},
-		images: {
+		imagesmin: {
 			pattern: '**/*.{gif,jpg,jpeg,png,svg}',
-			parser: require('./lib/parse-images')
+			parser: require('./lib/parse-imagesmin')
 		},
-		js: {
+		jsmin: {
 			pattern: '**/*.js',
-			parser: require('./lib/parse-js')
+			parser: require('./lib/parse-jsmin')
 		},
-		json: {
+		jsonmin: {
 			pattern: '**/*.json',
-			parser: require('./lib/parse-json')
+			parser: require('./lib/parse-jsonmin')
 		},
-		xml: {
+		xmlmin: {
 			pattern: '**/*.xml',
-			parser: require('./lib/parse-xml')
+			parser: require('./lib/parse-xmlmin')
 		}
 	}
 };
