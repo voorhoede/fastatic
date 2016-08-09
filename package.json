@@ -7,12 +7,12 @@
   },
   "main": "index.js",
   "scripts": {
-    "examples": "npm-run-all --serial examples:*",
+    "examples": "run-s examples:*",
     "examples:microsoft": "./bin/fastatic examples/microsoft.github.io-master/ --dest dist/examples/microsoft/",
     "examples:react": "./bin/fastatic examples/react-gh-pages/ --dest dist/examples/react/",
     "examples:bootstrap": "./bin/fastatic examples/bootstrap-gh-pages/ --dest dist/examples/bootstrap/",
-    "postexamples:react": "node ./scripts/post-react.js",
-    "build": "npm run examples && npm run build:readme",
+    "postexamples:react": "node ./scripts/replace-react-paths.js",
+    "build": "run-s examples build:readme",
     "build:readme": "marked README.md -o 'dist/index.html'",
     "serve": "http-server 'dist/' -i -p 3278",
     "fastatic:help": "./bin/fastatic --help",
@@ -49,7 +49,6 @@
     "conventional-changelog-cli": "1.2.0",
     "cz-conventional-changelog": "1.1.7",
     "eslint": "3.2.2",
-    "gh-markdown-cli": "0.2.0",
     "http-server": "0.9.0",
     "ngrok": "2.2.2"
   },
