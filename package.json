@@ -66,6 +66,7 @@
     "gulp-htmlmin": "2.0.0",
     "gulp-imagemin": "3.0.2",
     "gulp-pretty-data": "0.1.1",
+    "gulp-replace": "0.5.4",
     "gulp-uglify": "2.0.0",
     "imagemin-mozjpeg": "6.0.0",
     "imagemin-pngquant": "5.0.0",
