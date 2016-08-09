@@ -71,6 +71,7 @@
     "imagemin-mozjpeg": "6.0.0",
     "imagemin-pngquant": "5.0.0",
     "imagemin-svgo": "5.1.0",
+    "marked": "0.3.6",
     "npm-run-all": "2.3.0",
     "pump": "1.0.1",
     "rimraf": "2.5.4"
