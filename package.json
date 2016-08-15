@@ -51,8 +51,8 @@
   "dependencies": {
     "bluebird": "3.4.1",
     "calc-percent": "1.0.1",
-    "cli-table": "0.3.1",
     "cli-spinner": "0.2.5",
+    "cli-table": "0.3.1",
     "colors": "1.1.2",
     "commander": "2.9.0",
     "filesize": "3.3.0",
@@ -66,6 +66,7 @@
     "imagemin-mozjpeg": "6.0.0",
     "imagemin-pngquant": "5.0.0",
     "imagemin-svgo": "5.1.0",
+    "lodash": "4.15.0",
     "pump": "1.0.1",
     "rimraf": "2.5.4"
   }

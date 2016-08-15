@@ -1,42 +1,11 @@
 const copy = require('./lib/copy');
+const defaults = require('./lib/defaults');
+const merge = require('lodash/merge');
 const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
 const stats = require('./lib/parser-stats');
 const Spinner = require('cli-spinner').Spinner;
-
-const defaults = {
-	src: './',
-	dest: undefined,
-	temp: './.fastatic-temp/',
-	parsers: {
-		cssmin: {
-			pattern: '**/*.css',
-			parser: require('./lib/parse-cssmin')
-		},
-		htmlmin: {
-			pattern: '**/*.html',
-			parser: require('./lib/parse-htmlmin')
-		},
-		imagesmin: {
-			pattern: '**/*.{gif,jpg,jpeg,png,svg}',
-			parser: require('./lib/parse-imagesmin')
-		},
-		jsmin: {
-			pattern: '**/*.js',
-			parser: require('./lib/parse-jsmin')
-		},
-		jsonmin: {
-			pattern: '**/*.json',
-			parser: require('./lib/parse-jsonmin')
-		},
-		xmlmin: {
-			pattern: '**/*.xml',
-			parser: require('./lib/parse-xmlmin')
-		}
-	}
-};
-
 
 function fastatic(options) {
 	const config = defineConfig(defaults, options);
@@ -63,7 +32,7 @@ function fastatic(options) {
 }
 
 function defineConfig(defaults, options) {
-	const config = Object.assign({}, defaults, options);
+	const config = merge({}, defaults, options);
 	config.dest = config.dest || config.src;
 
 	Object.keys(config.parsers).forEach(name => {
