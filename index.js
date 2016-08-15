@@ -1,4 +1,5 @@
 const copy = require('./lib/copy');
+const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
 const stats = require('./lib/parser-stats');
@@ -61,7 +62,6 @@ function fastatic(options) {
 	.then(() => console.log('Done. Optimised static files in', config.dest));
 }
 
-
 function defineConfig(defaults, options) {
 	const config = Object.assign({}, defaults, options);
 	config.dest = config.dest || config.src;
@@ -73,19 +73,5 @@ function defineConfig(defaults, options) {
 	});
 	return config;
 }
-
-
-function parseAll(config) {
-	return Promise.all(
-		Object.keys(config.parsers).map(function(name) {
-			return config.parsers[name].parser({
-				src: config.src,
-				dest: config.temp,
-				pattern: config.parsers[name].pattern
-			});
-		})
-	);
-}
-
 
 module.exports = fastatic;
