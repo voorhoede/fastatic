@@ -14,7 +14,7 @@
     "examples:react": "./bin/fastatic examples/react-gh-pages/ --dest examples/_build/react/",
     "examples:bootstrap": "./bin/fastatic examples/bootstrap-gh-pages/ --dest examples/_build/bootstrap/",
     "ngrok": "ngrok http 3278",
-    "start": "http-server 'examples/' -c-1 -o -p 3278",
+    "start": "http-server 'examples/_build/' -c-1 -o -p 3278",
     "test": "eslint index.js /lib /bin",
     "changelog": "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --output-unreleased",
     "commit": "git-cz",
