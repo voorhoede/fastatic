@@ -1,3 +1,4 @@
 node_modules/
 .fastatic-temp/
 npm-debug.log
+examples/_build/

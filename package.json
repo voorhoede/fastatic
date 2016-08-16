@@ -9,9 +9,9 @@
   "scripts": {
     "fastatic:help": "./bin/fastatic --help",
     "fastatic:version": "./bin/fastatic --version",
-    "fastatic:microsoft": "./bin/fastatic examples/microsoft.github.io-master/ --dest examples/microsoft/",
-    "fastatic:react": "./bin/fastatic examples/react-gh-pages/ --dest examples/react/",
-    "fastatic:bootstrap": "./bin/fastatic examples/bootstrap-gh-pages/ --dest examples/bootstrap/",
+    "fastatic:microsoft": "./bin/fastatic examples/microsoft.github.io-master/ --dest examples/_build/microsoft/",
+    "fastatic:react": "./bin/fastatic examples/react-gh-pages/ --dest examples/_build/react/",
+    "fastatic:bootstrap": "./bin/fastatic examples/bootstrap-gh-pages/ --dest examples/_build/bootstrap/",
     "ngrok": "ngrok http 3278",
     "start": "http-server 'examples/' -c-1 -o -p 3278",
     "test": "eslint index.js /lib /bin",
