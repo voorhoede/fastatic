@@ -1,4 +1,5 @@
 const copy = require('./lib/copy');
+const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
 const stats = require('./lib/parser-stats');
@@ -72,19 +73,6 @@ function defineConfig(defaults, options) {
 		}
 	});
 	return config;
-}
-
-
-function parseAll(config) {
-	return Promise.all(
-		Object.keys(config.parsers).map(function(name) {
-			return config.parsers[name].parser({
-				src: config.src,
-				dest: config.temp,
-				pattern: config.parsers[name].pattern
-			});
-		})
-	);
 }
 
 
