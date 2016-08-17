@@ -1,9 +1,10 @@
 const copy = require('./lib/copy');
+const merge = require('lodash/merge');
 const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
-const stats = require('./lib/parser-stats');
 const Spinner = require('cli-spinner').Spinner;
+const stats = require('./lib/parser-stats');
 
 const defaults = {
 	src: './',
@@ -64,7 +65,7 @@ function fastatic(options) {
 
 
 function defineConfig(defaults, options) {
-	const config = Object.assign({}, defaults, options);
+	const config = merge({}, defaults, options);
 	config.dest = config.dest || config.src;
 
 	Object.keys(config.parsers).forEach(name => {
