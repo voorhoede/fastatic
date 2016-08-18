@@ -35,6 +35,18 @@ const defaults = {
 			pattern: '**/*.xml',
 			parser: require('./lib/parse-xmlmin')
 		}
+	},
+	fileTypeDisplayName: {
+		css: 'CSS',
+		gif: 'Images',
+		html: 'HTML',
+		jpeg: 'Images',
+		jpg: 'Images',
+		js: 'JavaScript',
+		json: 'JSON',
+		png: 'Images',
+		svg: 'Images',
+		xml: 'XML'
 	}
 };
 
