@@ -1,9 +1,10 @@
 const copy = require('./lib/copy');
 const merge = require('lodash/merge');
+const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
-const stats = require('./lib/parser-stats');
 const Spinner = require('cli-spinner').Spinner;
+const stats = require('./lib/parser-stats');
 
 const defaults = {
 	src: './',
@@ -73,19 +74,6 @@ function defineConfig(defaults, options) {
 		}
 	});
 	return config;
-}
-
-
-function parseAll(config) {
-	return Promise.all(
-		Object.keys(config.parsers).map(function(name) {
-			return config.parsers[name].parser({
-				src: config.src,
-				dest: config.temp,
-				pattern: config.parsers[name].pattern
-			});
-		})
-	);
 }
 
 
