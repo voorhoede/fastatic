@@ -58,9 +58,14 @@ function fastatic(options) {
 	.then(() => loader.stop())
 	//// 5. copy to final dest
 	.then(() => copy(config.temp, config.dest))
-	.catch(err => console.log('error', err)) // if anything goes wrong, we skip all steps, catch errors and remove temp
 	.then(() => remove(config.temp))
-	.then(() => console.log('Done. Optimised static files in', config.dest));
+	.then(() => console.log('Done. Optimised static files in', config.dest))
+	.catch(err => { // if anything goes wrong, we skip all steps, catch errors and remove temp
+		remove(config.temp);
+		loader.stop();
+		console.log('Optimising failed.');
+		process.exitCode = 1;
+	});
 }
 
 
@@ -75,6 +80,5 @@ function defineConfig(defaults, options) {
 	});
 	return config;
 }
-
 
 module.exports = fastatic;
