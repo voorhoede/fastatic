@@ -67,6 +67,7 @@
     "imagemin-pngquant": "5.0.0",
     "imagemin-svgo": "5.1.0",
     "lodash": "4.15.0",
+    "mute-stdout": "1.0.0",
     "pump": "1.0.1",
     "rimraf": "2.5.4"
   }

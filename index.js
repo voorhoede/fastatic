@@ -1,10 +1,12 @@
 const copy = require('./lib/copy');
+const logger = require('./lib/logger');
 const merge = require('lodash/merge');
 const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
 const Spinner = require('cli-spinner').Spinner;
 const stats = require('./lib/parser-stats');
+const stdout = require('mute-stdout');
 
 const defaults = {
 	src: './',
@@ -42,9 +44,7 @@ const defaults = {
 function fastatic(options) {
 	const config = defineConfig(defaults, options);
 
-	const loader = new Spinner(`%s Crunching ${config.src}`);
-	loader.setSpinnerString(18);
-	loader.start();
+	stdout.mute();
 
 	// 1. copy to temp dir
 	copy(config.src, config.temp)
@@ -54,13 +54,12 @@ function fastatic(options) {
 	//// ...
 	//// 4. display stats
 	.then(() => stats(config))
-	.then(output => console.log(output))
-	.then(() => loader.stop())
+	.then(output => logger.log(output))
 	//// 5. copy to final dest
 	.then(() => copy(config.temp, config.dest))
-	.catch(err => console.log('error', err)) // if anything goes wrong, we skip all steps, catch errors and remove temp
+	.catch(err => logger.error(err)) // if anything goes wrong, we skip all steps, catch errors and remove temp
 	.then(() => remove(config.temp))
-	.then(() => console.log('Done. Optimised static files in', config.dest));
+	.then(() => logger.log('Done. Optimised static files in', config.dest));
 }
 
 
