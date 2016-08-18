@@ -12,7 +12,7 @@ const program = require('commander')
 
 const src = program.args[0];
 const dest = program.dest;
-const options = {};
+let options = {};
 
 options = (src) ? Object.assign(options, {src: src}) : options;
 options = (dest) ? Object.assign(options, {dest: dest}) : options;
