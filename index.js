@@ -1,37 +1,39 @@
 const copy = require('./lib/copy');
+const merge = require('lodash/merge');
+const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
-const stats = require('./lib/parser-stats');
 const Spinner = require('cli-spinner').Spinner;
+const stats = require('./lib/parser-stats');
 
 const defaults = {
 	src: './',
 	dest: undefined,
 	temp: './.fastatic-temp/',
 	parsers: {
-		css: {
+		cssmin: {
 			pattern: '**/*.css',
-			parser: require('./lib/parse-css')
+			parser: require('./lib/parse-cssmin')
 		},
-		html: {
+		htmlmin: {
 			pattern: '**/*.html',
-			parser: require('./lib/parse-html')
+			parser: require('./lib/parse-htmlmin')
 		},
-		images: {
+		imagesmin: {
 			pattern: '**/*.{gif,jpg,jpeg,png,svg}',
-			parser: require('./lib/parse-images')
+			parser: require('./lib/parse-imagesmin')
 		},
-		js: {
+		jsmin: {
 			pattern: '**/*.js',
-			parser: require('./lib/parse-js')
+			parser: require('./lib/parse-jsmin')
 		},
-		json: {
+		jsonmin: {
 			pattern: '**/*.json',
-			parser: require('./lib/parse-json')
+			parser: require('./lib/parse-jsonmin')
 		},
-		xml: {
+		xmlmin: {
 			pattern: '**/*.xml',
-			parser: require('./lib/parse-xml')
+			parser: require('./lib/parse-xmlmin')
 		}
 	}
 };
@@ -63,7 +65,7 @@ function fastatic(options) {
 
 
 function defineConfig(defaults, options) {
-	const config = Object.assign({}, defaults, options);
+	const config = merge({}, defaults, options);
 	config.dest = config.dest || config.src;
 
 	Object.keys(config.parsers).forEach(name => {
@@ -72,19 +74,6 @@ function defineConfig(defaults, options) {
 		}
 	});
 	return config;
-}
-
-
-function parseAll(config) {
-	return Promise.all(
-		Object.keys(config.parsers).map(function(name) {
-			return config.parsers[name].parser({
-				src: config.src,
-				dest: config.temp,
-				pattern: config.parsers[name].pattern
-			});
-		})
-	);
 }
 
 
