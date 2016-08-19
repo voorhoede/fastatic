@@ -100,7 +100,7 @@ fastatic({ src: 'my-static-site-source/', dest: 'my-static-site-dest/' });
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for [guidelines](CONTRIBUTING.md#guidelines) and [development scripts](CONTRIBUTING.md#scripts).
+See [CONTRIBUTING.md](https://github.com/voorhoede/fastatic/blob/master/CONTRIBUTING.md) for [guidelines](https://github.com/voorhoede/fastatic/blob/master/CONTRIBUTING.md#guidelines) and [development scripts](https://github.com/voorhoede/fastatic/blob/master/CONTRIBUTING.md#scripts).
 
 
 ## License
