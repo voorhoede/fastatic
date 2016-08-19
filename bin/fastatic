@@ -10,11 +10,8 @@ const program = require('commander')
 	.option('-d, --dest [value]', 'Output destination')
 	.parse(process.argv);
 
-const src = program.args[0];
-const dest = program.dest;
-let options = {};
 
-options = (src) ? Object.assign(options, {src: src}) : options;
-options = (dest) ? Object.assign(options, {dest: dest}) : options;
-
-fastatic(options);
+fastatic({
+	src: program.args[0],
+	dest: program.dest
+});
