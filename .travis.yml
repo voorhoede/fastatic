@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-- 'stable'
+- '6.0'
 cache:
   directories:
   - node_modules
@@ -14,9 +14,7 @@ notifications:
 before_script:
 - npm prune
 script:
-- npm run build:travis
-after_script:
-- bash ./scripts/deploy.sh
+- npm run build
 env:
   global:
   - GH_USER: voorhoede
