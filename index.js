@@ -47,25 +47,27 @@ function fastatic(options) {
 	loader.start();
 
 	// 1. copy to temp dir
-	copy(config.src, config.temp)
-	// 2. optimise files
-	.then(() => parseAll(config))
-	//// 3. revision files
-	//// ...
-	//// 4. display stats
-	.then(() => stats(config))
-	.then(output => console.log(output))
-	.then(() => loader.stop())
-	//// 5. copy to final dest
-	.then(() => copy(config.temp, config.dest))
-	.then(() => remove(config.temp))
-	.then(() => console.log('Done. Optimised static files in', config.dest))
-	.catch(err => { // if anything goes wrong, we skip all steps, catch errors and remove temp
-		remove(config.temp);
-		loader.stop();
-		console.log('Optimising failed.');
-		process.exitCode = 1;
-	});
+	const result = copy(config.src, config.temp)
+		// 2. optimise files
+		.then(() => parseAll(config))
+		//// 3. revision files
+		//// ...
+		//// 4. display stats
+		.then(() => stats(config))
+		.then(output => console.log(output))
+		.then(() => loader.stop())
+		//// 5. copy to final dest
+		.then(() => copy(config.temp, config.dest))
+		.then(() => remove(config.temp))
+		//// 6. report back to user
+		.then(() => {return config})
+		.catch(err => { // if anything goes wrong, we skip all steps, catch errors and remove temp
+			remove(config.temp);
+			loader.stop();
+			throw new Error('Optimising failed.');
+		});
+
+	return result;
 }
 
 
