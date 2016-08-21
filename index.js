@@ -15,6 +15,10 @@ const defaults = {
 			pattern: '**/*.css',
 			parser: require('./lib/parse-cssmin')
 		},
+		fontrev: {
+			pattern: '**/*.{eot,ttf,woff,woff2}',
+			parser: require('./lib/parse-rev')
+		},
 		htmlmin: {
 			pattern: '**/*.html',
 			parser: require('./lib/parse-htmlmin')
@@ -22,6 +26,11 @@ const defaults = {
 		imagemin: {
 			pattern: '**/*.{gif,jpg,jpeg,png,svg}',
 			parser: require('./lib/parse-imagemin')
+		},
+		imagerev: {
+			dependsOn: ['imagemin'],
+			pattern: '**/*.{gif,jpg,jpeg,png,svg}',
+			parser: require('./lib/parse-rev')
 		},
 		jsmin: {
 			pattern: '**/*.js',
