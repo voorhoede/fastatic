@@ -1,0 +1,62 @@
+<h1 id="fastatic">Fastatic</h1>
+<p><strong>Speed up your static site with one command: <code>fastatic</code></strong></p>
+<p>Static site generators are <a href="https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/">the next big thing</a>. Fastatic takes the ouput of <em>any static site generator</em> (<a href="http://jekyllrb.com/">Jekyll</a>, <a href="http://gohugo.io/">Hugo</a> and <a href="https://www.staticgen.com/">many others</a>) and optimises it. The result: faster static sites.</p>
+<p>Fastatic minifies your HTML, CSS, JS, JSON, XML and images. <a href="https://github.com/voorhoede/fastatic/issues">See issues for more planned improvements</a>.</p>
+<h2 id="example-react">Example: React</h2>
+<p>Running Fastatic on the <a href="https://facebook.github.io/react/">React</a>&#39;s <a href="https://github.com/facebook/react/tree/gh-pages">static site files</a> results in a faster site:</p>
+<pre><code class="lang-bash">
+┌───────────────────────────┬─────────────┬──────────────┬────────────────┐
+│Filetype                   │Original size│Optimized size│          Saving│
+├───────────────────────────┼─────────────┼──────────────┼────────────────┤
+│**/*.css                   │     29.51 KB│      22.57 KB│   6.94 KB (24%)│
+├───────────────────────────┼─────────────┼──────────────┼────────────────┤
+│**/*.html                  │      8.77 MB│       7.47 MB│   1.30 MB (15%)│
+├───────────────────────────┼─────────────┼──────────────┼────────────────┤
+│**/*.{gif,jpg,jpeg,png,svg}│     14.83 MB│      13.44 MB│   1.39 MB  (9%)│
+├───────────────────────────┼─────────────┼──────────────┼────────────────┤
+│**/*.js                    │      2.06 MB│       1.36 MB│ 714.22 KB (34%)│
+├───────────────────────────┼─────────────┼──────────────┼────────────────┤
+│**/*.xml                   │    197.68 KB│     197.30 KB│     381 B  (0%)│
+├───────────────────────────┼─────────────┼──────────────┼────────────────┤
+│Total                      │     25.94 MB│     22.54 MB │   3.39 MB (13%)│
+└───────────────────────────┴─────────────┴──────────────┴────────────────┘
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Fastatic works out-of-the-box with zero configuration.</p>
+<p>You can use Fastatic both as a <a href="#cli">CLI tool</a> and <a href="#js">programmatically in JS</a>.</p>
+<h3 id="install">Install</h3>
+<p>Fastatic is written in <a href="http://nodejs.org/">Node.js</a> and can be installed via <a href="https://npmjs.org/">npm</a>:</p>
+<pre><code class="lang-bash">$ npm install fastatic
+</code></pre>
+<h3 id="cli">CLI</h3>
+<p>Optimise all static files in <strong>current directory</strong>:</p>
+<pre><code class="lang-bash">$ fastatic
+</code></pre>
+<p>Optimise all static files in a <strong>specific directory</strong>:</p>
+<pre><code class="lang-bash">$ fastatic my-static-site-source/
+</code></pre>
+<p>Optimise all static files from a specific directory and <strong>output to a different directory</strong> using <code>--dest</code>:</p>
+<pre><code class="lang-bash">$ fastatic my-static-site-source/ --dest my-static-site-dest/
+</code></pre>
+<h3 id="js">JS</h3>
+<p>To use Fastatic programmatically import the <code>fastatic</code> module:</p>
+<pre><code class="lang-javascript">const fastatic = require(&#39;fastatic&#39;);
+</code></pre>
+<p>Optimise all static files in <strong>current directory</strong>:</p>
+<pre><code class="lang-javascript">fastatic();
+</code></pre>
+<p>Optimise all static files in a <strong>specific directory</strong>:</p>
+<pre><code class="lang-javascript">fastatic({ src: &#39;my-static-site-source/&#39; });
+</code></pre>
+<p>Optimise all static files from a specific directory and <strong>output to a different directory</strong>:</p>
+<pre><code class="lang-javascript">fastatic({ src: &#39;my-static-site-source/&#39;, dest: &#39;my-static-site-dest/&#39; });
+</code></pre>
+<h2 id="known-limitations">Known limitations</h2>
+<ul>
+<li>Fastastic doesn&#39;t concatenate files (css / js) because there is no reliable way to determine the combinations in which these files are served, nor does it know about the protocol over which it&#39;s served (HTTP/1 or HTTP/2).</li>
+<li>Fastastic doesn&#39;t resize images (png / jpg / gif) because there is no reliable way to determine which sizes the images are displayed in.</li>
+</ul>
+<h2 id="contributing">Contributing</h2>
+<p>See <a href="https://github.com/voorhoede/fastatic/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for <a href="https://github.com/voorhoede/fastatic/blob/master/CONTRIBUTING.md#guidelines">guidelines</a> and <a href="https://github.com/voorhoede/fastatic/blob/master/CONTRIBUTING.md#scripts">development scripts</a>.</p>
+<h2 id="license">License</h2>
+<p><a href="LICENSE">MIT licensed</a> © <a href="https://www.voorhoede.nl/">De Voorhoede</a></p>
