@@ -21,9 +21,9 @@ const defaults = {
 			pattern: '**/*.html',
 			parser: require('./lib/parse-htmlmin')
 		},
-		imagesmin: {
+		imagemin: {
 			pattern: '**/*.{gif,jpg,jpeg,png,svg}',
-			parser: require('./lib/parse-imagesmin')
+			parser: require('./lib/parse-imagemin')
 		},
 		jsmin: {
 			pattern: '**/*.js',
