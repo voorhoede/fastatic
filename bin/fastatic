@@ -8,13 +8,11 @@ const program = require('commander')
 	.description(`${pkg.name} (v${pkg.version}): ${pkg.description}`)
 	.usage('<src> [options]')
 	.option('-d, --dest [value]', 'Output destination')
+	.option('-l, --log-level [value]', 'Log level (silent|error|warn|verbose)', 'verbose')
 	.parse(process.argv);
 
-const src = program.args[0];
-const dest = program.dest;
-let options = {};
-
-options = (src) ? Object.assign(options, {src: src}) : options;
-options = (dest) ? Object.assign(options, {dest: dest}) : options;
-
-fastatic(options);
+fastatic({
+	src: program.args[0],
+	dest: program.dest,
+	logLevel: program.logLevel
+});

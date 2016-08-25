@@ -1,5 +1,5 @@
 const copy = require('./lib/copy');
-const logger = require('./lib/logger');
+const Logger = require('./lib/logger');
 const merge = require('lodash/merge');
 const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
@@ -21,9 +21,9 @@ const defaults = {
 			pattern: '**/*.html',
 			parser: require('./lib/parse-htmlmin')
 		},
-		imagesmin: {
+		imagemin: {
 			pattern: '**/*.{gif,jpg,jpeg,png,svg}',
-			parser: require('./lib/parse-imagesmin')
+			parser: require('./lib/parse-imagemin')
 		},
 		jsmin: {
 			pattern: '**/*.js',
@@ -43,6 +43,7 @@ const defaults = {
 
 function fastatic(options) {
 	const config = defineConfig(defaults, options);
+	const logger = new Logger(config.logLevel);
 
 	stdout.mute();
 

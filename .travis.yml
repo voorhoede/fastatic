@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-- '6.0'
+- stable
 cache:
   directories:
   - node_modules
@@ -14,9 +14,11 @@ notifications:
 before_script:
 - npm prune
 script:
-- npm test && npm run fastatic:microsoft
+- npm run build:travis
+after_script:
+- bash ./scripts/deploy.sh
 env:
   global:
   - GH_USER: voorhoede
   - GH_REPO: fastatic
-- secure: d6gnAXENj2vJ5/cvGUoxk6MNsVKVYU0cdx+7NTmw67cW0Ek+nW3z1ILW36gV8WNcuitQwJmlJC1LK8FjHiS0LjWT2sX+uQ2XojHQJR30DwApbltj2QV3No/A7BqYNn5M4CD8SUucJK1tNxYB09EvdcbYfo8kb0aKpe0PYXAHWGCCixOyOgRcsSX80BaPCl4lpWYPGOiGk8fXykfsnjBsctu+VKdya0iTVq+3ucBSx/l+4l2Ncr4guT2z4NNpfDUgARtEKgyVBHShjw5HnhMEVzjNtDsXdEFvY/eCxch/aDixLhAxefZbhaqU1OH6I0GhrwAe7jemzvhinHuK4OqTa58IpS4XTntLLR/Zo1j7cQXMTqs/STjPxGrnjp0bZHoBQOjHPIOwCGe1RLs393SxveoqpaQ/36Zv/R7Zic6uvMpqxDeccTMwuZObKfQmjXO4u2+FlsM6aVzJd/36Fb5it/qo2MA8e4epUtiOrB4nJGCiVjzyPCnBCB2eWe+23HRq6GycahwcvsWx6z1BUiBjPQoux/bgH7MtJfN02LnshNFciNiJPMNyS5GfXB9H6KcBKzWv+g77JYrTR+wQVTUbKO4QY1qGO2NMXgKksFT1JAfd+AKPRyMQ7gfWBNp0K4MocHv2dbqEDxtG90sLcFoSaYh2S8vEWDHhJpsq/8jfmNQ=
+  - secure: GtsS5hMRIqtEcn/TnNWaIW9Ymh07nFkt/QuUNtJ+TcaYRlvoparaVK98LYMsn2U5+pmPI7/cKNkwhmLty7eRZaq6VQQ0ZMWXIQxXGwKd23PEmV+THtwez2ZBp7QGwjugomxiDl/A01QPm0Fcs8pts5Ygn4k4lyuMKzaI6ORh+q9tyokn+IMXwuE8uJ4YU7eMvWdl3ZqDuttR8FffArem0XjGmr+SAGE3LkLqQ5dDkk31jyQktJVG6g2ZDM/649vegY939NGDQ4ntPv8y3K6qSWl2AeMU9qHMdEdAGt3m0ChG9gjFqqa3CEK2wxRG9rd6fBVAf21Kr5zAKVw6BMsqyi9NMevfFZqy7qD4GaFMgjryof1xKlYgZ0jhdbgu/uUf6LDeqL+W41fvElRr6lG9Tftw1ajrEbPfw9X3WedxmZLtxqRgueuNfGiMv0ggVuqTQltIm1vjhDiz9NzeE6WSm7h7SIGqXK558QuH8Tyu+cKubsXk+4xcDd2eWSzMsE+2SNi2sEf0e51OcC7JbxmVuWWOH7FJerwkHG7lsrK8jkQZUnT4XSmfVlLg3KvNOgHO1LNp2n5EgoaC2iQLizfw/SdYHujhkw2Vm+5pclpXoaZqnbt9BcJm7lnANpwB7KzjtwrHJYHBX0vC5StUjcleqUzTLZw1g9rePAXGxpxYe84=
