@@ -11,6 +11,7 @@
     "examples:microsoft": "./bin/fastatic examples/microsoft.github.io-master/ --dest build/examples/microsoft/",
     "examples:react": "./bin/fastatic examples/react-gh-pages/ --dest build/examples/react/",
     "examples:bootstrap": "./bin/fastatic examples/bootstrap-gh-pages/ --dest build/examples/bootstrap/",
+    "examples:nodejs": "./bin/fastatic examples/nodejs/ --dest build/examples/nodejs/",
     "postexamples:react": "node ./scripts/replace-react-paths.js",
     "build": "run-s examples build:readme build:readme build:examples-index",
     "build:readme": "marked README.md -o 'build/index.html'",
