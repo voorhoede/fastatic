@@ -8,10 +8,11 @@ const program = require('commander')
 	.description(`${pkg.name} (v${pkg.version}): ${pkg.description}`)
 	.usage('<src> [options]')
 	.option('-d, --dest [value]', 'Output destination')
+	.option('-l, --log-level [value]', 'Log level (silent|error|warn|verbose)', 'verbose')
 	.parse(process.argv);
-
 
 fastatic({
 	src: program.args[0],
-	dest: program.dest
+	dest: program.dest,
+	logLevel: program.logLevel
 });
