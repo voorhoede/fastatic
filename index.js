@@ -13,20 +13,22 @@ function fastatic(options) {
 	loader.setSpinnerString(18);
 	loader.start();
 
-	return copy(config.src, config.temp)
+	const result = copy(config.src, config.temp)
 		.then(() => parseAll(config))
 		.then(() => stats(config))
 		.then(output => console.log(output))
 		.then(() => loader.stop())
-		.then(() => copy(config.temp, config.dest))
-		.then(() => remove(config.temp))
-		.then(() => {return config})
-		.catch(err => { // if anything goes wrong, we skip all steps, catch errors and remove temp
+		.catch(err => {
 			remove(config.temp);
 			loader.stop();
 			throw new Error('Optimising failed.');
 		});
 
+	result
+		.then(() => copy(config.temp, config.dest))
+		.then(() => remove(config.temp));
+
+	return result;
 }
 
 module.exports = fastatic;
