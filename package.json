@@ -57,7 +57,7 @@
     "ngrok": "2.2.2"
   },
   "dependencies": {
-    "bluebird": "3.4.3",
+    "bluebird": "3.4.5",
     "calc-percent": "1.0.1",
     "cli-spinner": "0.2.5",
     "cli-table": "0.3.1",
