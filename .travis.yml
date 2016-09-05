@@ -1,22 +1,23 @@
 sudo: false
 language: node_js
-node_js:
-- stable
 cache:
   directories:
-  - node_modules
+    - node_modules
+notifications:
+  email: false
+node_js:
+  - '6'
+before_script:
+  - npm prune
+script:
+  - npm run build:travis
+after_success:
+  - npm run semantic-release
+  - bash ./scripts/deploy.sh
 branches:
   only:
   - master
   - /^greenkeeper-.*$/
-notifications:
-  email: false
-before_script:
-- npm prune
-script:
-- npm run build:travis
-after_script:
-- bash ./scripts/deploy.sh
 env:
   global:
   - GH_USER: voorhoede

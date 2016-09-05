@@ -1,6 +1,6 @@
 {
   "name": "fastatic",
-  "version": "0.1.2",
+  "version": "0.0.0-semantic-release",
   "description": "Speed up your static site",
   "bin": {
     "fastatic": "./bin/fastatic"
@@ -23,11 +23,8 @@
     "fastatic:version": "./bin/fastatic --version",
     "ngrok": "ngrok http 3278",
     "test": "eslint index.js /lib /bin",
-    "changelog": "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --output-unreleased",
     "commit": "git-cz",
-    "preversion": "npm test",
-    "version": "npm run changelog && git add .",
-    "postversion": "git commit -m \"chore(version): v$npm_package_version\n$(conventional-changelog --preset angular)\" && git tag -a v$npm_package_version -m \"$(conventional-changelog --preset angular)\""
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
     "optimization",
@@ -38,7 +35,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/voorhoede/fastatic"
+    "url": "https://github.com/voorhoede/fastatic"
   },
   "bugs": {
     "url": "https://github.com/voorhoede/fastatic/issues"
@@ -54,7 +51,8 @@
     "cz-conventional-changelog": "1.2.0",
     "eslint": "3.4.0",
     "http-server": "0.9.0",
-    "ngrok": "2.2.2"
+    "ngrok": "2.2.2",
+    "semantic-release": "4.3.5"
   },
   "dependencies": {
     "bluebird": "3.4.6",
