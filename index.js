@@ -1,5 +1,6 @@
 const copy = require('./lib/copy');
 const defineConfig = require('./lib/define-config');
+const Logger = require('./lib/logger');
 const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
