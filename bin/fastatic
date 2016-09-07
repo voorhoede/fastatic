@@ -2,7 +2,7 @@
 
 const fastatic = require('../index');
 const pkg = require('../package');
-const Logger = require('../lib/logger');
+const reporter = require('../lib/reporter');
 
 const program = require('commander')
 	.version(pkg.version)
@@ -12,15 +12,13 @@ const program = require('commander')
 	.option('-l, --log-level [value]', 'Log level (silent|error|warn|verbose)', 'verbose')
 	.parse(process.argv);
 
-const logger = new Logger(program.logLevel);
-
 fastatic({
-		src: program.args[0],
-		dest: program.dest,
-		logLevel: program.logLevel
-	})
-	.then(config => logger.log('Done. Optimised static files in', config.dest))
-	.catch(err => {
-		logger.error(err.message);
-		process.exitCode = 1;
-	});
+	src: program.args[0],
+	dest: program.dest,
+	logLevel: program.logLevel
+})
+.then(output => reporter(output))
+.catch(err => {
+	console.error(err.message);
+	process.exitCode = 1;
+});
