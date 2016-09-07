@@ -11,15 +11,16 @@ const spread = require('lodash/spread');
 
 function fastatic(options) {
 	const config = defineConfig(options);
-
+	const logger = new Logger(options.logLevel);
 	const loader = new Spinner(`%s Crunching ${config.src}`);
+
 	loader.setSpinnerString(18);
 	loader.start();
 
 	const result = copy(config.src, config.temp)
 		.then(() => parseAll(config))
 		.then(() => stats(config))
-		.then(output => console.log(output))
+		.then(output => logger.log(output))
 		.then(() => loader.stop())
 		.then(() => Promise.all([
 				compareFileSize(config.src, config.temp)
