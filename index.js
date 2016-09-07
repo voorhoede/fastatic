@@ -1,3 +1,4 @@
+const compareFileSize = require('./lib/compare-file-size');
 const copy = require('./lib/copy');
 const defineConfig = require('./lib/define-config');
 const Logger = require('./lib/logger');
@@ -6,7 +7,7 @@ const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
 const Spinner = require('cli-spinner').Spinner;
 const stats = require('./lib/parser-stats');
-const compareFileSize = require('./lib/compare-file-size');
+const spread = require('lodash/spread');
 
 function fastatic(options) {
 	const config = defineConfig(options);
@@ -20,7 +21,10 @@ function fastatic(options) {
 		.then(() => stats(config))
 		.then(output => console.log(output))
 		.then(() => loader.stop())
-		.then(() => compareFileSize(config.src, config.temp))
+		.then(() => Promise.all([
+				compareFileSize(config.src, config.temp)
+			]))
+		.then(spread((fileSize) => ({fileSize})))
 		.catch(err => {
 			remove(config.temp);
 			loader.stop();
