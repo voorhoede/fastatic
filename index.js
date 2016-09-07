@@ -6,7 +6,7 @@ const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
 const Spinner = require('cli-spinner').Spinner;
 const stats = require('./lib/parser-stats');
-const results = require('./lib/results');
+const compareFileSize = require('./lib/compare-file-size');
 
 function fastatic(options) {
 	const config = defineConfig(options);
@@ -20,7 +20,7 @@ function fastatic(options) {
 		.then(() => stats(config))
 		.then(output => console.log(output))
 		.then(() => loader.stop())
-		.then(() => results(config))
+		.then(() => compareFileSize(config))
 		.catch(err => {
 			remove(config.temp);
 			loader.stop();
