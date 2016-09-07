@@ -7,7 +7,6 @@ const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
 const Spinner = require('cli-spinner').Spinner;
 const stats = require('./lib/parser-stats');
-const spread = require('lodash/spread');
 
 function fastatic(options) {
 	const config = defineConfig(options);
@@ -21,10 +20,8 @@ function fastatic(options) {
 		.then(() => copy(config.temp.dest, config.dest))
 		.then(() => stats(config))
 		.then(output => logger.log(output))
-		.then(() => Promise.all([
-				compareFileSize(config.temp.src, config.temp.dest)
-			]))
-		.then(spread((fileSize) => ({fileSize})))
+		.then(() => compareFileSize(config.temp.src, config.temp.dest))
+		.then(fileSize => ({fileSize}))
 		.catch(err => {
 			remove(config.temp.root);
 			throw new Error('Optimising failed.');
