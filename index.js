@@ -12,29 +12,26 @@ const spread = require('lodash/spread');
 function fastatic(options) {
 	const config = defineConfig(options);
 	const logger = new Logger(options.logLevel);
-	const loader = new Spinner(`%s Crunching ${config.src}`);
 
-	loader.setSpinnerString(18);
-	loader.start();
-
-	const result = copy(config.src, config.temp)
+	const result = Promise.all([
+				copy(config.src, config.temp.src),
+				copy(config.src, config.temp.dest)
+			])
 		.then(() => parseAll(config))
+		.then(() => copy(config.temp.dest, config.dest))
 		.then(() => stats(config))
 		.then(output => logger.log(output))
-		.then(() => loader.stop())
 		.then(() => Promise.all([
-				compareFileSize(config.src, config.temp)
+				compareFileSize(config.temp.src, config.temp.dest)
 			]))
 		.then(spread((fileSize) => ({fileSize})))
 		.catch(err => {
-			remove(config.temp);
-			loader.stop();
+			remove(config.temp.root);
 			throw new Error('Optimising failed.');
 		});
 
 	result
-		.then(() => copy(config.temp, config.dest))
-		.then(() => remove(config.temp));
+		.then(() => remove(config.temp.root));
 
 	return result;
 }
