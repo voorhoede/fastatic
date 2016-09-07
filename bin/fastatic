@@ -20,7 +20,7 @@ fastatic({
 	logLevel: program.logLevel
 })
 .then(config => logger.log('Done. Optimised static files in', config.dest))
-	.catch(err => {
-		console.error(err.message);
-		process.exitCode = 1;
-	});
+.catch(err => {
+	logger.error(err.message);
+	process.exitCode = 1;
+});

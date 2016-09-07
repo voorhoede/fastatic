@@ -27,8 +27,7 @@ function fastatic(options) {
 			throw new Error('Optimising failed.');
 		});
 
-	result
-		.then(() => remove(config.temp.root));
+	result.then(() => remove(config.temp.root));
 
 	return result;
 }
