@@ -20,7 +20,7 @@ function fastatic(options) {
 		.then(() => stats(config))
 		.then(output => console.log(output))
 		.then(() => loader.stop())
-		.then(() => compareFileSize(config))
+		.then(() => compareFileSize(config.src, config.temp))
 		.catch(err => {
 			remove(config.temp);
 			loader.stop();
