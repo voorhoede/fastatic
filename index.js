@@ -16,7 +16,11 @@ function fastatic(options) {
 		.then(() => parseAll(config))
 		.then(() => copy(config.temp.dest, config.dest))
 		.then(() => compareFileSize(config.temp.src, config.temp.dest))
-		.then(fileSize => ({fileSize}))
+		.then(fileSize => ({
+			fileSize,
+			src: config.src,
+			dest: config.dest
+		}))
 		.catch(err => {
 			remove(config.temp.root);
 			throw new Error('Optimising failed.');
