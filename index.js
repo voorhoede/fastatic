@@ -1,3 +1,4 @@
+const compareFileSize = require('./lib/compare-file-size');
 const copy = require('./lib/copy');
 const defineConfig = require('./lib/define-config');
 const Logger = require('./lib/logger');
@@ -9,22 +10,26 @@ const stats = require('./lib/parser-stats');
 
 function fastatic(options) {
 	const config = defineConfig(options);
+	const logger = new Logger(options.logLevel);
 
-	const loader = new Spinner(`%s Crunching ${config.src}`);
-	loader.setSpinnerString(18);
-	loader.start();
+	const result = Promise.all([
+			copy(config.src, config.temp.src),
+			copy(config.src, config.temp.dest)
+		])
+		.then(() => parseAll(config))
+		.then(() => copy(config.temp.dest, config.dest))
+		.then(() => stats(config))
+		.then(output => logger.log(output))
+		.then(() => compareFileSize(config.temp.src, config.temp.dest))
+		.then(fileSize => ({fileSize}))
+		.catch(err => {
+			remove(config.temp.root);
+			throw new Error('Optimising failed.');
+		});
 
-	const logger = new Logger(config.logLevel);
+	result.then(() => remove(config.temp.root));
 
-	copy(config.src, config.temp)
-	.then(() => parseAll(config))
-	.then(() => stats(config))
-	.then(output => logger.log(output))
-	.then(() => loader.stop())
-	.then(() => copy(config.temp, config.dest))
-	.catch(err => logger.error(err)) // if anything goes wrong, we skip all steps, catch errors and remove temp
-	.then(() => remove(config.temp))
-	.then(() => logger.log('Done. Optimised static files in', config.dest));
+	return result;
 }
 
 module.exports = fastatic;
