@@ -13,9 +13,9 @@ function fastatic(options) {
 	const logger = new Logger(options.logLevel);
 
 	const result = Promise.all([
-				copy(config.src, config.temp.src),
-				copy(config.src, config.temp.dest)
-			])
+			copy(config.src, config.temp.src),
+			copy(config.src, config.temp.dest)
+		])
 		.then(() => parseAll(config))
 		.then(() => copy(config.temp.dest, config.dest))
 		.then(() => stats(config))
