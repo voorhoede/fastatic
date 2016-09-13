@@ -15,8 +15,8 @@ function fastatic(options) {
 		.then(() => parseAll(config))
 		.then(() => copy(config.temp.dest, config.dest))
 		.then(() => compareFileSize(config.temp.src, config.temp.dest))
-		.then(fileSize => ({
-			fileSize,
+		.then(filesize => ({
+			filesize,
 			src: config.src,
 			dest: config.dest
 		}))

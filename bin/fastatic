@@ -21,8 +21,8 @@ fastatic({
 		logLevel: program.logLevel
 	})
 	.then(output => {
-		const { fileSize, dest } = output;
-		filesizeReporter(fileSize, program.logLevel);
+		const { filesize, dest } = output;
+		filesizeReporter(filesize, program.logLevel);
 		logger.log(`Done. Optimised static files in: ${dest}`);
 	})
 	.catch(err => {
