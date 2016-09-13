@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const fastatic = require('../index');
-const Logger = require('../lib/logger');
 const pkg = require('../package');
 const reporter = require('../lib/reporter');
 
@@ -12,8 +11,6 @@ const program = require('commander')
 	.option('-d, --dest [value]', 'Output destination')
 	.option('-l, --log-level [value]', 'Log level (silent|error|warn|verbose)', 'verbose')
 	.parse(process.argv);
-
-const logger = new Logger(program.logLevel);
 
 fastatic({
 		src: program.args[0],

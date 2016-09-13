@@ -4,7 +4,6 @@ const defineConfig = require('./lib/define-config');
 const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
-const Spinner = require('cli-spinner').Spinner;
 
 function fastatic(options) {
 	const config = defineConfig(options);
@@ -21,7 +20,7 @@ function fastatic(options) {
 			src: config.src,
 			dest: config.dest
 		}))
-		.catch(err => {
+		.catch(() => {
 			remove(config.temp.root);
 			throw new Error('Optimising failed.');
 		});
