@@ -22,7 +22,7 @@ fastatic({
 	})
 	.then(output => {
 		const { fileSize, dest } = output;
-		filesizeReporter(fileSize);
+		filesizeReporter(fileSize, program.logLevel);
 		logger.log(`Done. Optimised static files in: ${dest}`);
 	})
 	.catch(err => {
