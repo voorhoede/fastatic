@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 const fastatic = require('../index');
+const filesizeReporter = require('../lib/reporters/filesize-reporter');
+const Logger = require('../lib/logger');
 const pkg = require('../package');
-const reporter = require('../lib/reporter');
 
 const program = require('commander')
 	.version(pkg.version)
@@ -12,12 +13,18 @@ const program = require('commander')
 	.option('-l, --log-level [value]', 'Log level (silent|error|warn|verbose)', 'verbose')
 	.parse(process.argv);
 
+const logger = new Logger(program.logLevel);
+
 fastatic({
 		src: program.args[0],
 		dest: program.dest,
 		logLevel: program.logLevel
 	})
-	.then(output => reporter(output))
+	.then(output => {
+		const { fileSize, dest } = output;
+		filesizeReporter(fileSize);
+		logger.log(`Done. Optimised static files in: ${dest}`);
+	})
 	.catch(err => {
 		console.error(err.message);
 		process.exitCode = 1;
