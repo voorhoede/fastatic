@@ -12,7 +12,7 @@ const program = require('commander')
 	.option('-l, --log-level [value]', 'Log level (silent|error|warn|verbose)', 'verbose')
 	.parse(process.argv);
 
-const logger = new Logger(program.logLevel);
+const logger = new Logger();
 
 fastatic({
 		src: program.args[0],
