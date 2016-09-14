@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 const fastatic = require('../index');
-const pkg = require('../package');
+const filesizeReporter = require('../lib/reporters/filesize-reporter');
 const Logger = require('../lib/logger');
+const pkg = require('../package');
 
 const program = require('commander')
 	.version(pkg.version)
@@ -19,8 +20,12 @@ fastatic({
 		dest: program.dest,
 		logLevel: program.logLevel
 	})
-	.then(config => logger.log('Done. Optimised static files in', config.dest))
+	.then(output => {
+		const { filesize, dest } = output;
+		filesizeReporter(filesize, program.logLevel);
+		logger.log(`Done. Optimised static files in: ${dest}`);
+	})
 	.catch(err => {
-		logger.error(err.message);
+		console.error(err.message);
 		process.exitCode = 1;
 	});
