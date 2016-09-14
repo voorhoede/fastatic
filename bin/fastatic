@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const errorReporter = require('../lib/reporters/error-reporter');
 const fastatic = require('../index');
 const filesizeReporter = require('../lib/reporters/filesize-reporter');
 const Logger = require('../lib/logger');
@@ -26,6 +27,7 @@ fastatic({
 		logger.log(`Done. Optimised static files in: ${dest}`);
 	})
 	.catch(err => {
-		logger.error(err);
+		errorReporter(err, program.logLevel);
+		logger.log(`Optimising failed. See above for details.`);
 		process.exitCode = 1;
 	});
