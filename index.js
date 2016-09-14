@@ -20,9 +20,9 @@ function fastatic(options) {
 			src: config.src,
 			dest: config.dest
 		}))
-		.catch(() => {
+		.catch(err => {
 			remove(config.temp.root);
-			throw new Error('Optimising failed.');
+			throw err;
 		});
 
 	result.then(() => remove(config.temp.root));

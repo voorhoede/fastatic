@@ -26,6 +26,6 @@ fastatic({
 		logger.log(`Done. Optimised static files in: ${dest}`);
 	})
 	.catch(err => {
-		console.error(err.message);
+		logger.error(err);
 		process.exitCode = 1;
 	});
