@@ -2,7 +2,7 @@
 
 const fastatic = require('../index');
 const filesizeReporter = require('../lib/reporters/filesize-reporter');
-const Logger = require('../lib/logger');
+const logger = require('../lib/logger');
 const pkg = require('../package');
 
 const program = require('commander')
@@ -13,8 +13,6 @@ const program = require('commander')
 	.option('-l, --log-level [value]', 'Log level (silent|error|warn|verbose)', 'verbose')
 	.parse(process.argv);
 
-const logger = new Logger(program.logLevel);
-
 fastatic({
 		src: program.args[0],
 		dest: program.dest,
@@ -22,7 +20,7 @@ fastatic({
 	})
 	.then(output => {
 		const { filesize, dest } = output;
-		filesizeReporter(filesize, program.logLevel);
+		filesizeReporter(filesize);
 		logger.log(`Done. Optimised static files in: ${dest}`);
 	})
 	.catch(err => {
