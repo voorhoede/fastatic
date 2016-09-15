@@ -1,7 +1,7 @@
 const compareFileSize = require('./lib/compare-file-size');
 const copy = require('./lib/copy');
 const defineConfig = require('./lib/define-config');
-const Logger = require('./lib/logger');
+const logger = require('./lib/logger');
 const parseAll = require('./lib/parse-all');
 const promisify = require('bluebird').promisify;
 const remove = promisify(require('rimraf'));
@@ -10,7 +10,8 @@ const stats = require('./lib/parser-stats');
 
 function fastatic(options) {
 	const config = defineConfig(options);
-	const logger = new Logger(options.logLevel);
+
+	logger.setLogLevel(options.logLevel);
 
 	const result = Promise.all([
 			copy(config.src, config.temp.src),
