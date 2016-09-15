@@ -25,7 +25,7 @@ fastatic({
 		logger.log(`Done. Optimised static files in: ${dest}`);
 	})
 	.catch(err => {
-		errorReporter(err, program.logLevel);
+		errorReporter(err);
 		logger.log(`Optimising failed. See above for details.`);
 		process.exitCode = 1;
 	});
