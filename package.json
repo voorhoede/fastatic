@@ -68,7 +68,7 @@
     "fs-extra": "0.30.0",
     "glob": "7.0.6",
     "gulp": "3.9.1",
-    "gulp-clean-css": "2.0.12",
+    "gulp-clean-css": "2.0.13",
     "gulp-htmlmin": "3.0.0",
     "gulp-imagemin": "3.0.3",
     "gulp-pretty-data": "0.1.1",
