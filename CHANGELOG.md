@@ -1,3 +1,32 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/voorhoede/fastatic/compare/v0.1.2...v0.1.3) (2016-11-17)
+
+
+### Bug Fixes
+
+* **ci:** add gulp-replace to deps ([88be0fa](https://github.com/voorhoede/fastatic/commit/88be0fa))
+* **ci:** add marked as deps ([0a059e9](https://github.com/voorhoede/fastatic/commit/0a059e9))
+* **ci:** fix build task ([d126e6f](https://github.com/voorhoede/fastatic/commit/d126e6f))
+* **fastatic:** can run without arguments ([8571f92](https://github.com/voorhoede/fastatic/commit/8571f92))
+* **fastatic:** options is overridden, so it should be let inst. of const ([bfcdfc9](https://github.com/voorhoede/fastatic/commit/bfcdfc9))
+* **index:** use lodash merge instead of Object.assign ([7eded65](https://github.com/voorhoede/fastatic/commit/7eded65))
+* **parse-html:** add more agressive html minifier options ([367114b](https://github.com/voorhoede/fastatic/commit/367114b)), closes [#45](https://github.com/voorhoede/fastatic/issues/45) [#46](https://github.com/voorhoede/fastatic/issues/46)
+* **parser:** explicitly set `base` for patterns not starting with wildcard ([0a690ef](https://github.com/voorhoede/fastatic/commit/0a690ef))
+* **parser-stats:** add new like before table render ([d2111cf](https://github.com/voorhoede/fastatic/commit/d2111cf))
+* **serve-locally:** fix paths on readme, rename scripts ([5b091cb](https://github.com/voorhoede/fastatic/commit/5b091cb))
+
+
+### Features
+
+* **ci:** publish disto to gh-pages on sucessfull build ([f5e6d15](https://github.com/voorhoede/fastatic/commit/f5e6d15)), closes [#50](https://github.com/voorhoede/fastatic/issues/50)
+* **examples:** add build task; add task to generate html based on readme ([18ca140](https://github.com/voorhoede/fastatic/commit/18ca140))
+* **examples:** change paths on react examples ([0bd7ce1](https://github.com/voorhoede/fastatic/commit/0bd7ce1))
+* **examples:** examples now serving from dist ([4ead3ec](https://github.com/voorhoede/fastatic/commit/4ead3ec))
+* **examples:** remove general gulpfile and move task to scripts ([6e45ea0](https://github.com/voorhoede/fastatic/commit/6e45ea0))
+* **results:** fastatic returns filesizes in results ([#92](https://github.com/voorhoede/fastatic/issues/92)) ([4bd7962](https://github.com/voorhoede/fastatic/commit/4bd7962))
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/voorhoede/fastatic/compare/v0.1.1...v0.1.2) (2016-08-05)
 
