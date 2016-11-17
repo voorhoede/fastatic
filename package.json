@@ -6,6 +6,9 @@
     "fastatic": "./bin/fastatic"
   },
   "main": "index.js",
+  "engines": {
+    "node": "6.x"
+  },
   "scripts": {
     "examples": "run-s examples:*",
     "examples:microsoft": "./bin/fastatic examples/microsoft.github.io-master/ --dest build/examples/microsoft/",
