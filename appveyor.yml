@@ -1,0 +1,26 @@
+# Fix line endings in Windows. (runs before repo cloning)
+init:
+  - git config --global core.autocrlf input
+
+environment:
+  matrix:
+    - nodejs_version: '6'
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - set CI=true
+  - npm -g install npm@latest
+  - set PATH=%APPDATA%\npm;%PATH%
+  - npm install
+matrix:
+  fast_finish: true
+version: '{build}'
+shallow_clone: true
+clone_depth: 1
+
+test_script:
+  - node --version
+  - npm --version
+  - npm test
+  - npm run build
+
+build: off
