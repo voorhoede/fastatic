@@ -16,8 +16,8 @@
     "examples:bootstrap": "./bin/fastatic examples/bootstrap-gh-pages/ --dest build/examples/bootstrap/",
     "examples:nodejs": "./bin/fastatic examples/nodejs/ --dest build/examples/nodejs/",
     "postexamples:react": "node ./scripts/replace-react-paths.js",
-    "build": "run-s examples build:readme build:readme build:examples-index",
-    "build:readme": "marked README.md -o 'build/index.html'",
+    "build": "run-s examples build:index build:examples-index",
+    "build:index": "node scripts/build-index.js",
     "build:examples-index": "marked examples/README.md -o 'build/examples/index.html'",
     "build:travis": "run-s build",
     "postbuild:travis": "node ./scripts/replace-react-paths-travis.js",
@@ -52,12 +52,15 @@
     }
   },
   "devDependencies": {
+    "cheerio": "0.22.0",
     "commitizen": "2.8.6",
     "conventional-changelog-cli": "1.2.0",
     "cz-conventional-changelog": "1.2.0",
     "eslint": "3.8.1",
     "http-server": "0.9.0",
-    "ngrok": "2.2.3"
+    "is-relative-url": "2.0.0",
+    "ngrok": "2.2.3",
+    "voorhoede-ocelot-formatter": "0.3.2"
   },
   "dependencies": {
     "bluebird": "3.4.6",
